@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>插入新几何体</title>
+    <title>同时绘制多个几何体</title>
     <style>
         body {
             margin: 0;
@@ -25,21 +25,34 @@
     /**
      * 创建网格模型
      */
-        // var geometry = new THREE.BoxGeometry(100, 100, 100);
-        // 创建球体 （半径，球面精度，水平细分数）
-        // var geometry = new THREE.SphereGeometry(60, 100, 100);
-        // 创建圆柱 （圆柱面顶部、底部直径50，50 高度100 圆周分段数）
-        // var geometry = new THREE.CylinderGeometry(50, 50, 100, 25);
-        // 正八面体
-        // var geometry = new THREE.OctahedronGeometry(50);
-        // 正十二面体
-        // var geometry = new THREE.DodecahedronGeometry(50);
-        // 正二十面体
-    var geometry = new THREE.IcosahedronGeometry(50);
+        // 立方体
+    var geometry1 = new THREE.BoxGeometry(100, 100, 100);
+    var material1 = new THREE.MeshLambertMaterial({color: 0x0000ff});
+    var mesh1 = new THREE.Mesh(geometry1, material1);
+    scene.add(mesh1);
 
-    var material = new THREE.MeshLambertMaterial({color: 0x00ff22});
-    var mesh = new THREE.Mesh(geometry, material);
-    scene.add(mesh);
+    // 球体
+    var geometry2 = new THREE.SphereGeometry(60, 40, 40);
+    var material2 = new THREE.MeshLambertMaterial({color: 0xff00ff})
+    var mesh2 = new THREE.Mesh(geometry2, material2);
+    mesh2.translateY(120);
+    mesh2.position.set(0, 110, 0);
+    scene.add(mesh2);
+
+    // 圆柱
+    // 圆柱网格模型
+    var geometry3 = new THREE.CylinderGeometry(50, 50, 100, 25);
+    var material3 = new THREE.MeshLambertMaterial({
+        color: 0xffff00
+    });
+    var mesh3 = new THREE.Mesh(geometry3, material3); //网格模型对象Mesh
+    mesh3.position.set(0, 220, 0);//设置mesh3模型对象的xyz坐标为120,0,0
+    scene.add(mesh3);
+
+    // 辅助坐标系
+    var axisHelper = new THREE.AxesHelper(250);
+    scene.add(axisHelper);
+
     /**
      * 光源设置
      */

@@ -3,15 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>插入新几何体</title>
+    <title>材质效果</title>
     <style>
         body {
             margin: 0;
             overflow: hidden;
-            /* 隐藏body窗口区域滚动条 */
         }
     </style>
-    <!--引入three.js三维引擎-->
     <script src="../js/three.js"></script>
     <script src="../js/OrbitControls.js"></script>
 </head>
@@ -25,19 +23,13 @@
     /**
      * 创建网格模型
      */
-        // var geometry = new THREE.BoxGeometry(100, 100, 100);
-        // 创建球体 （半径，球面精度，水平细分数）
-        // var geometry = new THREE.SphereGeometry(60, 100, 100);
-        // 创建圆柱 （圆柱面顶部、底部直径50，50 高度100 圆周分段数）
-        // var geometry = new THREE.CylinderGeometry(50, 50, 100, 25);
-        // 正八面体
-        // var geometry = new THREE.OctahedronGeometry(50);
-        // 正十二面体
-        // var geometry = new THREE.DodecahedronGeometry(50);
-        // 正二十面体
-    var geometry = new THREE.IcosahedronGeometry(50);
-
-    var material = new THREE.MeshLambertMaterial({color: 0x00ff22});
+    var geometry = new THREE.BoxGeometry(100, 100, 100);
+    // 添加高光效果
+    var material = new THREE.MeshLambertMaterial({
+        color:0x0000ff,
+        specular:0x4488ee,
+        shininess:12
+    })
     var mesh = new THREE.Mesh(geometry, material);
     scene.add(mesh);
     /**
